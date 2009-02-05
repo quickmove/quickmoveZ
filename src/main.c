@@ -14,14 +14,14 @@ void delay_us(uint16_t count)
 	for(k = 0; k < count; k++) _delay_loop_2(2);
 }
 
-uint8_t DELAY_COUNT_MAX = 5;	// state改变延时值*20ms
+uint8_t DELAY_COUNT_MAX = 5;	// state changed delay*20ms
 
 uint8_t high_count = 72;
 uint8_t low_count = 0;
 uint8_t g_delay_count = 0;
 
 /*
-// 前进
+// forward
 uint8_t M_HighCount[3][21] = {
 															{72,72,72, 76,80,80,80,80,80,76,72,68,64,64,64,64,64,68,72, 72,72},
 															{72,76,80, 80,80,76,72,68,64,64,64,64,64,68,72,76,80,80,80, 76,72},
@@ -29,14 +29,14 @@ uint8_t M_HighCount[3][21] = {
 														};
 */														
 														
-// 右转														
+// turn right													
 uint8_t M_HighCount[3][21] = {
 															{72,72,72, 76,80,80,80,80,80,76,72,68,64,64,64,64,64,68,72, 72,72},
 															{72,76,80, 80,80,76,72,68,64,64,64,64,64,68,72,76,80,80,80, 76,72},
 															{72,72,72, 72,72,72,72,72,72,72,72,72,72,72,72,72,72,72,72, 72,72}
 														};
 /*
-// 左转
+// turn left
 uint8_t M_HighCount[3][21] = {
 															{72,72,72, 72,72,72,72,72,72,72,72,72,72,72,72,72,72,72,72, 72,72},
 															{72,76,80, 80,80,76,72,68,64,64,64,64,64,68,72,76,80,80,80, 76,72},
@@ -48,7 +48,7 @@ uint8_t M_HighCount[3][21] = {
 //{72,72,72, 68,64,64,64,64,64,68,72,76,80,80,80,80,80,76,72, 72,72}
 uint8_t currState = 0;
 
-// Monitor脉冲 2.5ms
+// Monitor PWM 2.5ms
 void pwmMonitor(uint8_t monitorIndex)
 {
 	high_count = M_HighCount[monitorIndex][currState];
@@ -79,7 +79,7 @@ void runForward()
 
 int main(void)
 {
-	// 初始化口
+	// init port.
  	PORTB=0x00;
  	DDRB=0x00;
 
@@ -88,12 +88,12 @@ int main(void)
  	DDRB |= _BV(PB2);
 
 	/*
-	//设置PB5输入
+	//set PB5 in.
 	DDRB &= ~_BV(PB5);
 	PORTB |= _BV(PB5);
 	*/
 
- 	// 进入主程序循环
+ 	// main loop.
  	while(1)
  	{
 		//20ms{
