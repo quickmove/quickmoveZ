@@ -76,6 +76,25 @@ void running(void) {
 }
 
 int main(void) {
+  PORTB=0x00;
+  DDRB=0x00;
+  PORTC=0x00;
+  DDRC=0x00;
+
+  DDRB |= _BV(PB0);
+  PORTC |= _BV(PC0);
+  while(1) {
+    if(PINC&_BV(PC0)) {
+      PORTB |= _BV(PB0);
+    }
+    else {
+      PORTB &= ~_BV(PB0);
+    }
+  }
+  return 0;
+}
+
+int maindebug(void) {
   // init port.
   PORTB=0x00;
   DDRB=0x00;
@@ -114,6 +133,7 @@ int main(void) {
       currAction = 3;
     }
   }
+  return 0;
 }
 
 int led = 0;
