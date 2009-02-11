@@ -18,4 +18,4 @@ load: main.hex
 	uisp -dlpt=/dev/parport0 --upload if=main.hex -dprog=dapa  -v=3 --hash=32
 
 clean:
-	rm -f *.o *.map *.out
+	rm -f *.o *.map *.out *.hex
